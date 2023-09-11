@@ -1,4 +1,3 @@
-
 # Semaine 1
 
 ## Outils de base
