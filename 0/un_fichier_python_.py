@@ -1,5 +1,8 @@
-def print_hi(name):
-    print(f'Hi, {name}')
+a = [1,2,3]
 
-if __name__ == '__main__':
-    print_hi('PyCharm')
+y= a
+print(y)
+
+a[1] = 4 
+print(y)
+
