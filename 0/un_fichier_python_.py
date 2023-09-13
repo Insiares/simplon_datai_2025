@@ -6,3 +6,6 @@ print(y)
 a[1] = 4 
 print(y)
 
+import numpy as np 
+
+
