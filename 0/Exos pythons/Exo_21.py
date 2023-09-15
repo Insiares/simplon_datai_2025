@@ -27,6 +27,7 @@ def fibo3(n):
     #résultat : somme des deux termes précédents
     return fibo3(n-1) + fibo3(n-2)
 
-#
+#n in range(ordre)
 res = [fibo3(n) for n in range(15)]
 print(res)
+
