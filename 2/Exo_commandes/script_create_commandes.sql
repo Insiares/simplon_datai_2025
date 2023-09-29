@@ -15,7 +15,7 @@ CREATE TABLE `COMMANDES` (
 
 CREATE TABLE `CATEGORIE` (
 	`id` TINYINT AUTO_INCREMENT,
-  `cat_produit` VARCHAR(15),
+	`cat_produit` VARCHAR(15),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -49,7 +49,6 @@ CREATE TABLE `VILLE` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
-
 CREATE TABLE `MAGASIN` (
 	`id` tinyint auto_increment,
     `adresse_magasin` varchar(40),
@@ -57,7 +56,14 @@ CREATE TABLE `MAGASIN` (
     PRIMARY KEY (`id`)
     );
     
-ALTER TABLE `COMMANDES` ADD FOREIGN KEY (`id_produit`) REFERENCES `PRODUITS` (`id`);
+    CREATE TABLE asso(
+    id_produit SMALLINT NOT NULL,
+    id_commande SMALLINT NOT NULL,
+    PRIMARY KEY (id_produit,id_commande),
+    FOREIGN KEY (id_produit) REFERENCES PRODUITS(id),
+    FOREIGN KEY (id_commande) REFERENCES COMMANDES(id_commande));
+    
+
 ALTER TABLE `COMMANDES` ADD FOREIGN KEY (`id_client`) REFERENCES `CLIENTS` (`id`);
 ALTER TABLE `COMMANDES` ADD FOREIGN KEY (`id_magasin`) REFERENCES `MAGASIN` (`id`);
 ALTER TABLE `CLIENTS` ADD FOREIGN KEY (`id_ville`) REFERENCES `VILLE` (`id`);
