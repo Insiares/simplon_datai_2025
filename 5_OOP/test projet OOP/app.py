@@ -5,12 +5,11 @@ from components.plot_the_beauty_of_ML import plotting
 import numpy as np
 import os
 
-print(add(3,5))
-print(mul(5,5))
-
-print(np.arange(5))
-
-print(balegoum('Balegoum'))
+# goofin' around
+# print(add(3,5))
+# print(mul(5,5))
+# print(np.arange(5))
+# print(balegoum('Balegoum'))
 
 #Calling the cleaning csv module
 DIR_PATH = os.path.abspath(os.path.dirname(__file__))

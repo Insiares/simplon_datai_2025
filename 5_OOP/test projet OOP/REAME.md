@@ -1,3 +1,4 @@
+<a name="readme-top"></a>
 # BALEGOUM APP 
 
 Testing clean app environnement, with titanic dataset as an support example.
@@ -8,11 +9,11 @@ Testing clean app environnement, with titanic dataset as an support example.
 
 data_sc cleans missing values and applies one_hot encoding to categorical values. 
 
-## create_model
+### create_model
 
 Load and fit a logistic regression model on the cleaned data, then save the fitted model for latter use
 
-## plot
+### plot
 
 Plots the confusion matrix and feature importance, saves the images in dedicated folder, allowing for a proper gander
 
@@ -24,3 +25,5 @@ Plots the confusion matrix and feature importance, saves the images in dedicated
 - [X] Modeling module
 - [X] Plotting module
 - [ ] GUI
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>

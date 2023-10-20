@@ -1,5 +1,4 @@
 import pandas as pd
-from sklearn.preprocessing import  MinMaxScaler
 import os
 
 def csv_clean(file_path):

@@ -4,8 +4,6 @@ import pandas as pd
 import os
 import joblib
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import  MinMaxScaler
-from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
 
 def plotting(clean_file_path, model_file_path, save_img_path):
@@ -30,10 +28,10 @@ def plotting(clean_file_path, model_file_path, save_img_path):
 
     #confusion matrix
     conf_matrix = confusion_matrix(y_test, y_hat)
-    conf_matrix = conf_matrix/ conf_matrix.sum(axis = 1)
+    conf_matrix = conf_matrix/ conf_matrix.sum(axis = 1) #normalized
     plt.figure(figsize=(8,8))
     fig = sns.heatmap(conf_matrix, cmap='Blues', annot=True)
-    fig = fig.get_figure()
+    fig = fig.get_figure() #changing fig object, allowing us to save it
     plt.title('Confusion Matrix')
     plt.xlabel('Predicted')
     plt.ylabel('Actual')
@@ -42,7 +40,7 @@ def plotting(clean_file_path, model_file_path, save_img_path):
     fig.savefig(image1_save_path)
 
     #features importances
-    feat_imp = loaded_model.coef_.ravel()
+    feat_imp = loaded_model.coef_.ravel() #only works for LogReg, might edit latter
     plt.figure(figsize=(8,8))
     fig2 = sns.barplot(y= df.drop(['Survived'], axis=1).columns, x=feat_imp, orient='h')
     fig2 = fig2.get_figure()
