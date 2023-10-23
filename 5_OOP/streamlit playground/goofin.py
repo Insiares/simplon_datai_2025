@@ -128,5 +128,3 @@ with circ_graph_tab:
                       parents='parent',
                       values='value')
     st.plotly_chart(fig)
-
-
