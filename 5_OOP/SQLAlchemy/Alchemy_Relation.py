@@ -1,6 +1,7 @@
 from sqlalchemy.orm import declarative_base, sessionmaker, relationship
 from sqlalchemy import create_engine, Column, Integer, String, Float, ForeignKey
 from sqlalchemy_utils import create_database, database_exists, drop_database
+import pandas as pd
 
 engine = create_engine("sqlite://", echo=True)
 
@@ -65,18 +66,55 @@ session.add_all(products_object)
 session.add_all(order_object)
 session.commit()
 
+#Query for each table
 customer_output = session.query(Customer).all()
-for ind, cust in enumerate(customer_output):
+for cust in customer_output:
     print('id -', cust.id)
     print('name -', cust.name)
-    print(' email -', cust.email)
-
+    print('email -', cust.email)
 
 results = session.query(Product).all()
+for product in results:
+    print('ind -', product.id)
+    print('name - ', product.name)
+    print('price -', product.price)
+
+order_results = session.query(Order).all()
+for ords in order_results:
+    print('ind -', ords.id)
+    print('customerid - ', ords.customerid)
+    print('produtid -', ords.productid)
+
+#join query 
+
+big_query = session.query( Order.id, 
+                          Product.name, 
+                          Customer.name, 
+                          Product.price
+                          ).join(Product, 
+                                Order.productid == Product.id
+                         ).join(Customer, 
+                                Order.customerid == Customer.id).all()
+
+df = pd.DataFrame(big_query, columns = ['Commandes', 'Produit', 'Nom client', 'Prix'])
+print('\n'+79*'#'+'\n')
+print('Jointure')
+print(df)
+
+#updating an item
+produit_2 = session.get(Product, 2)
+produit_2.price = 500
+session.commit()
+
+query_update = session.query(Product).all()
 for ind, product in enumerate(results):
     print('ind -', product.id)
     print('name - ', product.name)
     print('price -', product.price)
+
+#deleting an entry
+session.query(Order).filter(Order.id==2).delete()
+session.commit()
 
 order_results = session.query(Order).all()
 for ind, ords in enumerate(order_results):
@@ -85,9 +123,3 @@ for ind, ords in enumerate(order_results):
     print('produtid -', ords.productid)
 
 session.close()
-
-
-
-
-
-
